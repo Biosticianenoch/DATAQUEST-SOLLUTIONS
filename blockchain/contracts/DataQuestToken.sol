@@ -31,13 +31,13 @@ contract DataQuestToken is ERC20, Ownable, ReentrancyGuard {
         if (stakes[msg.sender].amount > 0) {
             _processReward(msg.sender);
         }
-
+        
         _transfer(msg.sender, address(this), amount);
         stakes[msg.sender] = Stake(amount, block.timestamp);
         
         emit Staked(msg.sender, amount);
     }
-
+    
     function unstake() external nonReentrant {
         Stake storage userStake = stakes[msg.sender];
         require(userStake.amount > 0, "No active stake");
@@ -52,7 +52,7 @@ contract DataQuestToken is ERC20, Ownable, ReentrancyGuard {
         
         emit Unstaked(msg.sender, amount, reward);
     }
-
+    
     function getReward() external view returns (uint256) {
         return _calculateReward(msg.sender);
     }
@@ -60,15 +60,15 @@ contract DataQuestToken is ERC20, Ownable, ReentrancyGuard {
     function _calculateReward(address user) internal view returns (uint256) {
         Stake storage userStake = stakes[user];
         if (userStake.amount == 0) return 0;
-
+        
         uint256 timeElapsed = block.timestamp - userStake.timestamp;
         if (timeElapsed > STAKE_DURATION) {
             timeElapsed = STAKE_DURATION;
-        }
-
+    }
+    
         return (userStake.amount * APY * timeElapsed) / (STAKE_DURATION * 100);
     }
-
+    
     function _processReward(address user) internal {
         uint256 reward = _calculateReward(user);
         if (reward > 0) {

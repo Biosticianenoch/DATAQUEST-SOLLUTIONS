@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract LearningMarketplace is Ownable, ReentrancyGuard {
     IERC20 public immutable paymentToken;
-
+    
     struct Course {
         address creator;
         uint256 price;
@@ -15,7 +15,7 @@ contract LearningMarketplace is Ownable, ReentrancyGuard {
         bool active;
         uint256 revenueShare; // Percentage of revenue shared with creator (0-100)
     }
-
+    
     mapping(uint256 => Course) public courses;
     mapping(address => mapping(uint256 => bool)) public userHasAccess;
     mapping(uint256 => uint256) public courseRevenue;
@@ -75,7 +75,7 @@ contract LearningMarketplace is Ownable, ReentrancyGuard {
 
         emit CoursePurchased(courseId, msg.sender);
     }
-
+    
     function updateCourse(
         uint256 courseId,
         uint256 newPrice,
@@ -86,7 +86,7 @@ contract LearningMarketplace is Ownable, ReentrancyGuard {
 
         course.price = newPrice;
         course.metadataURI = newMetadataURI;
-
+        
         emit CourseUpdated(courseId, newPrice, newMetadataURI);
     }
 
@@ -97,7 +97,7 @@ contract LearningMarketplace is Ownable, ReentrancyGuard {
         course.active = !course.active;
         emit CourseStatusChanged(courseId, course.active);
     }
-
+    
     function withdrawRevenue(uint256 courseId) external nonReentrant {
         Course storage course = courses[courseId];
         require(msg.sender == course.creator, "Not course creator");
@@ -107,15 +107,15 @@ contract LearningMarketplace is Ownable, ReentrancyGuard {
 
         courseRevenue[courseId] = 0;
         require(paymentToken.transfer(msg.sender, amount), "Transfer failed");
-
+        
         emit RevenueWithdrawn(msg.sender, amount);
     }
-
+    
     function updatePlatformFee(uint256 newFee) external onlyOwner {
         require(newFee <= 30, "Fee too high"); // Maximum 30% platform fee
         platformFee = newFee;
     }
-
+    
     function getCourse(uint256 courseId) external view returns (
         address creator,
         uint256 price,

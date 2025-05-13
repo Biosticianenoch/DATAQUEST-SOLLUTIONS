@@ -49,7 +49,7 @@ contract CourseNFT is ERC721URIStorage, Ownable {
         courseRequirements[courseId] = requirements;
         emit CourseRequirementsSet(courseId, requirements);
     }
-
+    
     function getCourseId(uint256 tokenId) external view returns (uint256) {
         // This will revert if the token does not exist
         ownerOf(tokenId);

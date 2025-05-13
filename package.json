@@ -1,53 +1,27 @@
 {
-  "name": "data-science-hub",
+  "name": "dataquest-solutions",
   "version": "1.0.0",
-  "description": "Beta Solutions Platform",
+  "description": "DataQuest Solutions - Web3 Learning Platform",
   "scripts": {
-    "dev": "node start-dev.js",
-    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "dev": "cd frontend && npm run dev",
     "build": "cd frontend && npm run build",
-    "start": "cd backend && npm start",
-    "compile": "hardhat compile",
-    "deploy": "hardhat run scripts/deploy.ts --network sepolia",
-    "test": "hardhat test",
-    "coverage": "hardhat coverage"
+    "test": "cd blockchain && npm test"
   },
+  "keywords": [
+    "web3",
+    "blockchain",
+    "education",
+    "learning"
+  ],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@openzeppelin/contracts": "^4.9.5",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
-    "@types/react-router-dom": "^5.3.3",
-    "bcrypt": "^5.1.1",
-    "dotenv": "^16.5.0",
-    "ethers": "^5.8.0",
-    "lucide-react": "^0.488.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-router-dom": "^7.5.1",
-    "web3": "^4.16.0",
-    "web3.storage": "^4.5.5"
-  },
-  "main": "start-dev.js",
-  "keywords": [],
+  "license": "MIT",
   "devDependencies": {
-    "@nomicfoundation/hardhat-chai-matchers": "^2.0.8",
-    "@nomicfoundation/hardhat-ethers": "^3.0.8",
-    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
-    "@nomiclabs/hardhat-ethers": "^2.2.3",
-    "@nomiclabs/hardhat-etherscan": "^3.1.8",
-    "@nomiclabs/hardhat-waffle": "^2.0.6",
-    "@typechain/hardhat": "^9.1.0",
-    "@types/chai": "^5.2.2",
-    "@types/mocha": "^10.0.10",
-    "@types/node": "^22.15.17",
-    "chai": "^5.2.0",
-    "ethereum-waffle": "^4.0.10",
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "@nomicfoundation/hardhat-ethers": "^3.0.0",
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
+    "ethers": "^6.8.1",
     "hardhat": "^2.24.0",
-    "hardhat-gas-reporter": "^2.2.3",
-    "solidity-coverage": "^0.8.16",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "ts-node": "^10.9.2"
   }
 }
