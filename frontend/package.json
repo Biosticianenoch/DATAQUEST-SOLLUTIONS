@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "generate-types": "ts-node scripts/generate-types.ts",
-    "build": "npm run generate-types && tsc && vite build",
+    "generate-types": "ts-node --loader ts-node/esm scripts/generate-types.ts",
+    "prebuild": "npm run generate-types",
+    "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
