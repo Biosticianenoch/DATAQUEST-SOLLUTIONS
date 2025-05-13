@@ -1,0 +1,55 @@
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #e0f7fa; /* light sky blue */
+  color: #0f172a; /* dark slate for visibility */
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  background: #e0f7fa; /* light sky blue */
+  color: #222c3a;
+}
+
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .app-container {
+    background-color: #3b82f6; /* light blue-500 */
+    color: #0f172a; /* dark slate for contrast */
+  }
+  .main-content {
+    background-color: #3b82f6;
+    color: #0f172a;
+  }
+}
